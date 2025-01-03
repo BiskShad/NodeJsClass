@@ -1,11 +1,29 @@
-const http = require('http');
-const routes = require('./route');
+const path = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const app = express();
+
+//installing express pug dinamic template
+app.set('view engine' , 'pug');
+app.set('views', 'views');
+
+//Routes Link
+const adminData = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
+app.use(bodyParser.urlencoded({extended: true}));
+
+//Acces to css forms
+app.use(express.static(path.join(__dirname, 'public')));
+
+//Acces to admin Routes
+app.use('/admin',adminData.routes);
+app.use(shopRoutes);
+
+app.use((req, res, next) => {
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+});
 
 
-
-const server = http.createServer(routes); 
-  
- 
-
-
-server.listen(3000);
+app.listen(3000);  
