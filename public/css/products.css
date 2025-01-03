@@ -94,3 +94,20 @@
 .form-control input:focus {
     outline-color: #00695c;
 }
+
+.submit {
+  padding: 10px 20px;
+  background-color: #00695c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: #45a049;
+}
+
+.submit:active {
+  background-color: #3e8e41;
+}
