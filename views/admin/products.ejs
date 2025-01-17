@@ -1,5 +1,6 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/products.css">
+<link rel="stylesheet" href="/css/products.css">
+    
 </head>
 <body>
     <%- include('../includes/navigation.ejs') %>
@@ -8,18 +9,18 @@
             <div class="grid">
                 <% for (let product of prods) { %>
                     <article class="card product-item">
-                        <header class="card__header">
-                            <h1 class="product__title"><%= product.title %></h1>
+                        <header class="card-header">
+                            <h1 class="product-title"><%= product.title %></h1>
                         </header>
-                        <div class="card__image">
+                        <div class="card-image">
                             <img src="<%= product.imageUrl %>"
                                 alt="<%= product.title %>">
                         </div>
-                        <div class="card__content">
-                            <h2 class="product__price">$<%= product.price %></h2>
-                            <p class="product__description"><%= product.description %></p>
+                        <div class="card-content">
+                            <h2 class="product-price">$<%= product.price %></h2>
+                            <p class="product-description"><%= product.description %></p>
                         </div>
-                        <div class="card__actions">
+                        <div class="card-actions">
                             <a href="/admin/add-product" class="btn">Edit</button>
                             <form action="/admin/delete-product" method="POST">
                                 <button class="btn" type="submit">Delete</button>
