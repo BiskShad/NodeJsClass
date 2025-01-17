@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', shopController.getIndex);
 
-router.get('/products', shopController.getProduct);
+router.get('/products', shopController.getProducts);
 
 //No es una ruta especifica , es una ruta de cualquier producto 
 router.get('/products/:productId', shopController.getProduct);
