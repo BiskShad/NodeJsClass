@@ -19,17 +19,14 @@
                                     <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
                                 </div>
                                 <div class="card-content">
-                                    <h2 class="product-price">$
-                                        <%= product.price %>
-                                    </h2>
-                                    <p class="product-description">
-                                        <%= product.description %>
+                                    <h2 class="product-price">$<%= product.price %></h2>
+                                    <p class="product-description"><%= product.description %>
                                     </p>
                                 </div>
                                 <div class="card-actions">
                                     <a href="/products/<%= product.id %>" class="btn">Details</a>
-                                    <form action="/add-to-cart" method="POST">
-                                        <button class="btn">Add to Cart</button>
+                                    <%- include('../includes/add-to-cart.ejs', {product: product}) %>
+                                       
                                     </form>
                                 </div>
                             </article>
