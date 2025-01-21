@@ -1,7 +1,9 @@
 const Product = require('../models/product');
 
+//Adding product
+
 exports.getAddProduct = (req, res, next) => {
-    res.render('admin/add-product', {pageTitle: 'Add Product', 
+    res.render('admin/edit-product', {pageTitle: 'Add Product', 
     path: '/admin/add-product', 
     productCSS: true, 
     activeAddProduct: true});
@@ -18,6 +20,20 @@ exports.postAddProduct = (req, res, next) => {
      res.redirect('/');
 };
 
+
+//Edit product in Admin products
+exports.getEditProduct = (req, res, next) => {
+    const editMode = req.query.edit;
+    if (!editMode) {
+        return res.redirect('/');
+    }
+    res.render('admin/edit-product', {
+    pageTitle: 'Add Product', 
+    path: '/admin/edit-product', 
+    editing: editMode 
+    });
+   
+};
 
 exports.getProducts = (req, res, next) => {
     Product.fetchAll(products => {

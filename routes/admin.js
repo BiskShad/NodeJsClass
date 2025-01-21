@@ -21,4 +21,8 @@ router.get('/products', adminController.getProducts);
 
 router.post('/add-product', adminController.postAddProduct);
 
+//routa para editar productos en Admin
+
+router.get('/edit-product/productId', adminController.getEditProduct);
+
 module.exports = router;
