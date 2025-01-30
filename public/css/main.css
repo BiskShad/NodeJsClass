@@ -79,7 +79,7 @@ form {
   transform: translateX(0);
 }
 
-.mobile-nav__item-list {
+.mobile-nav-item-list {
   list-style: none;
   display: flex;
   flex-direction: column;
