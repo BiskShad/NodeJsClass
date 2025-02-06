@@ -25,14 +25,20 @@ exports.getProduct = (req, res, next) => {
 };
 
 
+// exportando la base de datos
+
 exports.getIndex = (req, res, next) => {
-     Product.fetchAll((products) => {
-          res.render('shop/index', {
-               prods: products, 
-               pageTitle: 'All Product', 
-               path:'/', 
-          });
-     }); 
+     Product.fetchAll()
+          .then(([rows, fieldData]) => {
+               res.render('shop/index', {
+                    prods: rows, 
+                    pageTitle: 'Shop', 
+                    path:'/', 
+                    
+               });
+
+          })
+          .catch(err => console.log(err));
 };
 
 

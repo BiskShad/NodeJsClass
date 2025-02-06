@@ -5,6 +5,10 @@ const bodyParser = require('body-parser');
 //const expressHbs = require('express-handlebars'); CUANDO QUIERAR HANDLEBARS COMO TEMPLATE
 
 const errorController = require('./controllers/error')
+
+//exportando la base de datos
+const db = require('./util/database');
+
 const app = express();
 
 //installing express pug dinamic template
@@ -15,6 +19,8 @@ app.set('views', 'views');
 //Routes Link
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
+
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 
