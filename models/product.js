@@ -1,36 +1,27 @@
-//Importando Data de productos para almacenar
-const db = require('../util/database');
-const Cart = require('./cart');
+const Sequelize = require('sequelize');
+const sequelize = require('../util/database');
 
-
-
-
-module.exports = class Product {
-  constructor(id, title, imageUrl, description, price) {
-    this.id = id;
-    this.title = title;
-    this.imageUrl = imageUrl;
-    this.description = description;
-    this.price = price;
+const Product = sequelize.define('product', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    allowNull: false,
+    primaryKey : true
+  },
+  title: Sequelize.STRING,
+  price: {
+    type: Sequelize.DOUBLE,
+    allowNull: false
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  description: {
+    type: Sequelize.STRING,
+    allowNull: false
   }
 
-  //verificando si los productos tienen la misma id, para actualizar la informacion
-  save() {
-  
-  }
-  
-  //Eliminando producto
-  static deleteById(id) {
-  
+});
 
-  }
-
-
-  static fetchAll() {
-    return db.execute('SELECT * FROM products');
-    
-  }
-      
-  static findById(id) {
-  }
-};
+module.exports = Product;
