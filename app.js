@@ -12,6 +12,8 @@ const sequelize = require('./util/database');
 //Creando usuario en la base de datos 
 const Product = require('./models/product');
 const User = require('./models/user');
+const Cart = require('./models/cart');
+const CartItem = require('./models/cart-item');
 
 const app = express();
 
@@ -48,8 +50,14 @@ app.use(shopRoutes);
 //Acess response to 404 ejs
 app.use(errorController.get404);
 
+
+//Database create tables
 Product.belongsTo(User, {constrains: true, onDelete: 'CASCADE' });
 User.hasMany(Product);
+User.hasOne(Cart);
+Cart.belongsTo(User);
+Cart.belongsToMany(Product, {through: CartItem});
+Product.belongsToMany(Cart, {through: CartItem});
 
 sequelize
     //.sync({force: true })
@@ -67,6 +75,9 @@ sequelize
 })
 .then(user => {
     //console.log(user);
+    return user.createCart();
+})
+.then(cart => {
     app.listen(3000);
 })
 .catch(err => {
