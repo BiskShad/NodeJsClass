@@ -9,11 +9,13 @@ const errorController = require('./controllers/error')
 //exportando la base de datos
 const sequelize = require('./util/database');
 
-//Creando usuario en la base de datos 
+//Creando usuario en la base de datos  Modelos relacionales
 const Product = require('./models/product');
 const User = require('./models/user');
 const Cart = require('./models/cart');
 const CartItem = require('./models/cart-item');
+const Order = require('./models/order');
+const OrderItem = require('./models/order-item');
 
 const app = express();
 
@@ -51,17 +53,20 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 
-//Database create tables
+//Database create tables relations
 Product.belongsTo(User, {constrains: true, onDelete: 'CASCADE' });
 User.hasMany(Product);
 User.hasOne(Cart);
 Cart.belongsTo(User);
-Cart.belongsToMany(Product, {through: CartItem});
-Product.belongsToMany(Cart, {through: CartItem});
+Cart.belongsToMany(Product, {through: CartItem });
+Product.belongsToMany(Cart, {through: CartItem });
+Order.belongsTo(User);
+User.hasMany(Order);
+Order.belongsToMany(Product, { through: OrderItem });
 
 sequelize
-    //.sync({force: true })
-    .sync()
+    .sync({force: true })
+    //.sync()
     .then(result => {
         return User.findByPk(1);
     //console.log(result);

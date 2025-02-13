@@ -32,3 +32,14 @@
   background: red;
   color: white;
 }
+
+.btn.order {
+  color: blue;
+  border-color: blue;
+}
+
+.btn.order:hover,
+.btn.order.active {
+  background: blue;
+  color: white;
+}
